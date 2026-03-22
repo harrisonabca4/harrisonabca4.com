@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harrison Greanias | HarrisonABCA4</title>
+    <meta name="description" content="Enterprise tech, energy markets, and geopolitics. Written by someone who solves problems with tech for a living and thinks about everything else for fun.">
+    <meta property="og:title" content="Harrison Greanias | HarrisonABCA4">
+    <meta property="og:description" content="Enterprise tech, energy markets, and geopolitics. Connecting communications infrastructure, energy, and macro forces to find alpha in work and investing.">
+    <meta property="og:url" content="https://harrisonabca4.com">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@HarrisonABCA4">
+    <link rel="canonical" href="https://harrisonabca4.com">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #0a0a0b;
+            --bg-elevated: #111113;
+            --bg-card: #161618;
+            --border: #2a2a2e;
+            --border-hover: #3a3a40;
+            --text-primary: #e8e8ec;
+            --text-secondary: #9a9aa0;
+            --text-muted: #6a6a72;
+            --accent: #c8965a;
+            --accent-dim: rgba(200, 150, 90, 0.12);
+            --accent-hover: #d4a76b;
+            --link: #7aa2d4;
+            --link-hover: #9bb8e0;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(10, 10, 11, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-inner {
+            max-width: 900px; margin: 0 auto; padding: 0 2rem;
+            height: 56px; display: flex; align-items: center; justify-content: space-between;
+        }
+        .nav-brand { font-weight: 600; font-size: 0.95rem; color: var(--text-primary); text-decoration: none; letter-spacing: -0.01em; }
+        .nav-brand span { color: var(--accent); }
+        .nav-links { display: flex; gap: 1.75rem; align-items: center; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text-primary); }
+        .nav-links a.nav-disclosure {
+            color: var(--accent); border: 1px solid rgba(200, 150, 90, 0.3);
+            padding: 0.35rem 0.85rem; border-radius: 4px; font-size: 0.8rem;
+        }
+        .nav-links a.nav-disclosure:hover { background: var(--accent-dim); border-color: var(--accent); }
+
+        section { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+
+        .hero { padding-top: 140px; padding-bottom: 80px; }
+        .hero h1 { font-size: 2.8rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 1.25rem; }
+        .hero h1 .accent { color: var(--accent); }
+        .hero .subtitle { font-size: 1.15rem; color: var(--text-secondary); line-height: 1.65; max-width: 640px; margin-bottom: 2rem; }
+        .hero-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .hero-links a {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 500;
+            padding: 0.5rem 1rem; border: 1px solid var(--border); border-radius: 6px; transition: all 0.2s;
+        }
+        .hero-links a:hover { color: var(--text-primary); border-color: var(--border-hover); background: var(--bg-elevated); }
+        .hero-links a.primary-link { background: var(--accent); color: var(--bg); border-color: var(--accent); font-weight: 600; }
+        .hero-links a.primary-link:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+
+        .divider { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+        .divider hr { border: none; border-top: 1px solid var(--border); }
+
+        .about { padding-top: 80px; padding-bottom: 80px; }
+        .about p { color: var(--text-secondary); font-size: 1.05rem; line-height: 1.8; max-width: 700px; }
+        .about p + p { margin-top: 1.25rem; }
+        .about em { color: var(--text-muted); font-style: normal; }
+
+        .topics { padding-top: 80px; padding-bottom: 80px; }
+        .section-label {
+            font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500;
+            text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 2rem;
+        }
+        .topics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+        .topic-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 8px; padding: 1.75rem; transition: border-color 0.2s;
+        }
+        .topic-card:hover { border-color: var(--border-hover); }
+        .topic-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.75rem; letter-spacing: -0.01em; }
+        .topic-card p { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.65; }
+
+        .writing { padding-top: 80px; padding-bottom: 80px; }
+        .article-list { display: flex; flex-direction: column; gap: 0; }
+        .article-item {
+            display: block; padding: 1.5rem 0; border-bottom: 1px solid var(--border);
+            text-decoration: none; transition: background 0.15s;
+        }
+        .article-item:first-child { border-top: 1px solid var(--border); }
+        a.article-item:hover { background: var(--bg-elevated); margin: 0 -1rem; padding: 1.5rem 1rem; }
+        .article-item h3 { font-size: 1.05rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.4rem; letter-spacing: -0.01em; }
+        .article-item .article-desc { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
+        .article-item .article-meta { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem; font-family: var(--font-mono); }
+        .article-tag {
+            display: inline-block; font-size: 0.7rem; font-family: var(--font-mono);
+            color: var(--accent); background: var(--accent-dim);
+            padding: 0.15rem 0.5rem; border-radius: 3px; margin-right: 0.5rem; font-weight: 500;
+        }
+
+        .connect { padding-top: 80px; padding-bottom: 120px; }
+        .connect-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+        .connect-card {
+            display: flex; flex-direction: column; align-items: center; gap: 0.75rem;
+            padding: 1.5rem 1rem; background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 8px; text-decoration: none; transition: all 0.2s;
+        }
+        .connect-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+        .connect-icon { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
+        .connect-icon svg { width: 24px; height: 24px; fill: var(--text-secondary); }
+        .connect-card:hover .connect-icon svg { fill: var(--text-primary); }
+        .connect-card span { font-size: 0.85rem; font-weight: 500; color: var(--text-secondary); }
+        .connect-card:hover span { color: var(--text-primary); }
+        .connect-handle { font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono); }
+
+        footer { border-top: 1px solid var(--border); padding: 2rem 0; text-align: center; }
+        footer p { font-size: 0.8rem; color: var(--text-muted); }
+        footer a { color: var(--text-secondary); text-decoration: none; }
+        footer a:hover { color: var(--text-primary); }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero .subtitle { font-size: 1rem; }
+            .topics-grid { grid-template-columns: 1fr; }
+            .connect-grid { grid-template-columns: repeat(2, 1fr); }
+            .nav-links { gap: 1rem; }
+            .about p { font-size: 0.95rem; }
+            a.article-item:hover { margin: 0; padding: 1.5rem 0; }
+        }
+        @media (max-width: 480px) {
+            .hero { padding-top: 100px; padding-bottom: 50px; }
+            .hero h1 { font-size: 1.65rem; }
+            .hero .subtitle { font-size: 0.92rem; line-height: 1.6; }
+            section { padding-left: 1.25rem; padding-right: 1.25rem; }
+            .nav-inner { padding: 0 1rem; height: 50px; }
+            .nav-links { gap: 0.75rem; }
+            .nav-links a { font-size: 0.8rem; }
+            .nav-links a.nav-disclosure { padding: 0.3rem 0.65rem; font-size: 0.75rem; }
+            .divider { padding: 0 1.25rem; }
+            .hero-links { flex-direction: column; }
+            .hero-links a { justify-content: center; }
+            .about, .topics, .writing, .connect { padding-top: 50px; padding-bottom: 50px; }
+            .topic-card { padding: 1.25rem; }
+            .topic-card h3 { font-size: 0.95rem; }
+            .topic-card p { font-size: 0.84rem; }
+            .article-item h3 { font-size: 0.95rem; }
+            .article-item .article-desc { font-size: 0.85rem; }
+            .connect-grid { gap: 0.75rem; }
+            .connect-card { padding: 1.25rem 0.75rem; }
+        }
+        @media (max-width: 360px) {
+            .hero h1 { font-size: 1.45rem; }
+            .nav-brand { font-size: 0.85rem; }
+            .connect-grid { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="/" class="nav-brand">Harrison<span>ABCA4</span></a>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#writing">Writing</a>
+            <a href="#connect">Connect</a>
+            <a href="holdings.html" class="nav-disclosure">Holdings</a>
+        </div>
+    </div>
+</nav>
+
+<section class="hero">
+    <h1>Harrison Greanias<span class="accent">.</span></h1>
+    <p class="subtitle">Enterprise tech, energy markets, and geopolitics &mdash; written by someone who solves problems with tech for a living and thinks about everything else for fun. I connect dots between communications infrastructure, energy and macro forces to find alpha in work and investing.</p>
+    <div class="hero-links">
+        <a href="https://harrisonabca4.substack.com" class="primary-link" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16"/><path d="M4 8h16"/><path d="M4 12l8 6 8-6"/></svg>
+            Subscribe on Substack
+        </a>
+        <a href="https://x.com/HarrisonABCA4" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            @HarrisonABCA4
+        </a>
+        <a href="https://www.linkedin.com/in/harrisongreanias/" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+        </a>
+    </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<section class="about" id="about">
+    <p>I'm Harrison Greanias. CPaaS Key Account Manager at Vonage, where I sell programmable communications APIs into enterprise accounts. UC Berkeley Haas. Thirteen years in enterprise tech sales &mdash; Oracle HCM/ERP Cloud, then the startup grind, now deep in the network layer at Vonage.</p>
+    <p>I went legally blind at 10 from a genetic condition called Stargardt's disease. The <span style="color: var(--accent)">ABCA4</span> gene mutation &mdash; hence the handles. I grew up navigating a world that wasn't built for me, which gave me dark humor, radical candor, and a habit of seeing what other people miss. The blindness isn't me. It's the first thing others think of and the first thing I forget in my origin story. The content stands on its own.</p>
+</section>
+
+<div class="divider"><hr></div>
+
+<section class="topics" id="topics">
+    <div class="section-label">What I Write About</div>
+    <div class="topics-grid">
+        <div class="topic-card">
+            <h3>Security</h3>
+            <p>Authentication infrastructure &mdash; SMS OTP, SIM Swap detection, Silent Auth, passkeys, FIDO2. The network intelligence layer underneath identity. Who's getting hacked, why it keeps happening, and what the fix actually looks like.</p>
+        </div>
+        <div class="topic-card">
+            <h3>Marketing</h3>
+            <p>Enterprise messaging &mdash; RCS, A2P SMS, branded calling, STIR/SHAKEN, WebRTC. The channels that reach customers and the infrastructure that makes them trustworthy. Where the adoption gaps are and who's closing them.</p>
+        </div>
+        <div class="topic-card">
+            <h3>Investing</h3>
+            <p>Energy, commodities, geopolitics, and macro forces. Midstream infrastructure, trade policy, currency dynamics, and tax strategies for W-2 earners &mdash; including oil &amp; gas IDCs via NOWIs. Structural analysis, not hot takes.</p>
+        </div>
+    </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<section class="writing" id="writing">
+    <div class="section-label">Coming Soon</div>
+    <div class="article-list">
+        <div class="article-item">
+            <h3>SMS OTP Isn't Dead &mdash; The Network Underneath It Is</h3>
+            <p class="article-desc">The security community says kill SMS authentication. They're right about the vulnerability. Wrong about the fix. Every passwordless system still depends on a phone number somewhere &mdash; and there's nothing underneath it.</p>
+            <div class="article-meta"><span class="article-tag">Security</span></div>
+        </div>
+        <div class="article-item">
+            <h3>59% of Your Competitors Haven't Launched RCS. That's Your Promotion.</h3>
+            <p class="article-desc">96% of smartphones support RCS. 59% of enterprises haven't shipped a single message. That's not slow adoption &mdash; that's an information arbitrage, and it's closing.</p>
+            <div class="article-meta"><span class="article-tag">Marketing</span></div>
+        </div>
+        <div class="article-item">
+            <h3>The Phone Call Nobody Answers (And Why That's About to Change)</h3>
+            <p class="article-desc">Voice isn't dying. It's being re-platformed. Branded calling, STIR/SHAKEN, and WebRTC are rebuilding the highest-fidelity customer touchpoint that exists &mdash; and the market hasn't noticed.</p>
+            <div class="article-meta"><span class="article-tag">Marketing</span></div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<section class="connect" id="connect">
+    <div class="section-label">Connect</div>
+    <div class="connect-grid">
+        <a href="https://harrisonabca4.substack.com" class="connect-card" target="_blank" rel="noopener">
+            <div class="connect-icon">
+                <svg viewBox="0 0 24 24"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
+            </div>
+            <span>Substack</span>
+            <span class="connect-handle">Harrison<span style="color: var(--accent)">ABCA4</span></span>
+        </a>
+        <a href="https://x.com/HarrisonABCA4" class="connect-card" target="_blank" rel="noopener">
+            <div class="connect-icon">
+                <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </div>
+            <span>X / Twitter</span>
+            <span class="connect-handle">@Harrison<span style="color: var(--accent)">ABCA4</span></span>
+        </a>
+        <a href="https://www.linkedin.com/in/harrisongreanias/" class="connect-card" target="_blank" rel="noopener">
+            <div class="connect-icon">
+                <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </div>
+            <span>LinkedIn</span>
+            <span class="connect-handle">Harrison Greanias</span>
+        </a>
+        <a href="mailto:admin@harrisonabca4.com" class="connect-card">
+            <div class="connect-icon">
+                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            </div>
+            <span>Email</span>
+            <span class="connect-handle">Get in touch</span>
+        </a>
+    </div>
+</section>
+
+<footer>
+    <p>Harrison Greanias &middot; Harrison<span style="color: var(--accent)">ABCA4</span> &middot; <a href="holdings.html">Holdings &amp; Disclosures</a></p>
+    <p style="margin-top: 0.5rem;">Opinions are my own. Nothing here is investment advice.</p>
+</footer>
+
+</body>
+</html>
