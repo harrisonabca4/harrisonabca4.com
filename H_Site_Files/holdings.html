@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holdings & Disclosures | Harrison Greanias</title>
+    <meta name="description" content="Current investment holdings and disclosures for Harrison Greanias. Transparency builds trust.">
+    <meta name="robots" content="noindex">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #0a0a0b;
+            --bg-elevated: #111113;
+            --bg-card: #161618;
+            --border: #2a2a2e;
+            --border-hover: #3a3a40;
+            --text-primary: #e8e8ec;
+            --text-secondary: #9a9aa0;
+            --text-muted: #6a6a72;
+            --accent: #c8965a;
+            --accent-dim: rgba(200, 150, 90, 0.12);
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(10, 10, 11, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-inner {
+            max-width: 900px; margin: 0 auto; padding: 0 2rem;
+            height: 56px; display: flex; align-items: center; justify-content: space-between;
+        }
+        .nav-brand { font-weight: 600; font-size: 0.95rem; color: var(--text-primary); text-decoration: none; letter-spacing: -0.01em; }
+        .nav-brand span { color: var(--accent); }
+        .nav-links { display: flex; gap: 1.75rem; align-items: center; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text-primary); }
+        .nav-links a.active { color: var(--accent); }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+
+        .page-header { padding-top: 120px; padding-bottom: 40px; }
+        .page-header h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 1rem; }
+        .page-header .last-updated { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+        .page-header .disclaimer {
+            background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent);
+            border-radius: 4px; padding: 1.25rem 1.5rem; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.7;
+        }
+
+        .allocation-section { padding-top: 60px; padding-bottom: 40px; }
+        .section-label {
+            font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500;
+            text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 1.5rem;
+        }
+
+        .allocation-chart { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 3rem; }
+        .alloc-row { display: grid; grid-template-columns: 200px 1fr 60px; align-items: center; gap: 1rem; }
+        .alloc-name { font-size: 0.9rem; font-weight: 500; color: var(--text-primary); text-align: right; }
+        .alloc-name .ticker { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); margin-left: 0.4rem; }
+        .alloc-bar-wrapper { height: 28px; background: var(--bg-elevated); border-radius: 4px; overflow: hidden; position: relative; }
+        .alloc-bar { height: 100%; border-radius: 4px; transition: width 0.6s ease; }
+        .alloc-pct { font-family: var(--font-mono); font-size: 0.85rem; font-weight: 500; color: var(--text-secondary); text-align: right; }
+
+        .bar-equity { background: linear-gradient(90deg, #4a7ab5, #5a8ec8); }
+        .bar-etf { background: linear-gradient(90deg, #6a5ab5, #7a6ac8); }
+        .bar-index { background: linear-gradient(90deg, #5a9ab5, #6aaac8); }
+        .bar-energy { background: linear-gradient(90deg, #c8965a, #d4a76b); }
+        .bar-cash { background: linear-gradient(90deg, #8a8a92, #9a9aa0); }
+
+        .summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 3rem; }
+        .summary-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; }
+        .summary-card .card-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; font-family: var(--font-mono); margin-bottom: 0.5rem; }
+        .summary-card .card-value { font-size: 1.5rem; font-weight: 700; color: var(--text-primary); }
+        .summary-card .card-detail { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem; }
+
+        .holdings-table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; }
+        .holdings-table th {
+            font-size: 0.75rem; font-family: var(--font-mono); font-weight: 500; color: var(--text-muted);
+            text-transform: uppercase; letter-spacing: 0.05em; text-align: left; padding: 0.75rem 1rem; border-bottom: 1px solid var(--border);
+        }
+        .holdings-table th:last-child { text-align: right; }
+        .holdings-table td { padding: 0.85rem 1rem; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+        .holdings-table tr:hover { background: var(--bg-elevated); }
+        .holdings-table td:last-child { text-align: right; font-family: var(--font-mono); font-weight: 500; }
+        .holding-name { font-weight: 500; color: var(--text-primary); }
+        .holding-ticker { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); }
+        .holding-type { display: inline-block; font-size: 0.7rem; font-family: var(--font-mono); padding: 0.15rem 0.5rem; border-radius: 3px; font-weight: 500; }
+        .type-equity { color: #5a8ec8; background: rgba(74, 122, 181, 0.12); }
+        .type-etf { color: #7a6ac8; background: rgba(106, 90, 181, 0.12); }
+        .type-index { color: #6aaac8; background: rgba(90, 154, 181, 0.12); }
+        .type-energy { color: var(--accent); background: var(--accent-dim); }
+        .type-cash { color: #9a9aa0; background: rgba(138, 138, 146, 0.12); }
+
+        .methodology { padding-top: 40px; padding-bottom: 100px; }
+        .methodology h2 { font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; }
+        .methodology p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.75; max-width: 700px; }
+        .methodology p + p { margin-top: 1rem; }
+
+        footer { border-top: 1px solid var(--border); padding: 2rem 0; text-align: center; }
+        footer p { font-size: 0.8rem; color: var(--text-muted); }
+        footer a { color: var(--text-secondary); text-decoration: none; }
+        footer a:hover { color: var(--text-primary); }
+
+        @media (max-width: 768px) {
+            .alloc-row { grid-template-columns: 140px 1fr 50px; gap: 0.5rem; }
+            .alloc-name { font-size: 0.8rem; }
+            .summary-grid { grid-template-columns: 1fr; }
+            .holdings-table { font-size: 0.85rem; }
+            .holdings-table td, .holdings-table th { padding: 0.7rem 0.75rem; }
+        }
+        @media (max-width: 480px) {
+            .container { padding-left: 1.25rem; padding-right: 1.25rem; }
+            .nav-inner { padding: 0 1rem; height: 50px; }
+            .nav-links { gap: 0.75rem; }
+            .nav-links a { font-size: 0.8rem; }
+            .page-header { padding-top: 100px; }
+            .page-header h1 { font-size: 1.5rem; }
+            .page-header .disclaimer { padding: 1rem; font-size: 0.82rem; }
+            .alloc-row { grid-template-columns: 100px 1fr 45px; gap: 0.4rem; }
+            .alloc-name { font-size: 0.78rem; }
+            .alloc-name .ticker { display: none; }
+            .alloc-pct { font-size: 0.78rem; }
+            .alloc-bar-wrapper { height: 22px; }
+            .allocation-section { padding-top: 40px; }
+            .holdings-table thead { display: none; }
+            .holdings-table tr {
+                display: flex; flex-wrap: wrap; padding: 0.85rem 0;
+                border-bottom: 1px solid var(--border); gap: 0.25rem 0.75rem; align-items: center;
+            }
+            .holdings-table td { border: none; padding: 0; font-size: 0.85rem; }
+            .holdings-table td:first-child { flex-basis: 100%; }
+            .holdings-table td:last-child { margin-left: auto; font-size: 0.9rem; }
+            .summary-card { padding: 1rem; }
+            .summary-card .card-value { font-size: 1.25rem; }
+            .methodology p { font-size: 0.85rem; }
+        }
+        @media (max-width: 360px) {
+            .alloc-row { grid-template-columns: 85px 1fr 40px; }
+            .alloc-name { font-size: 0.72rem; }
+            .nav-brand { font-size: 0.85rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="index.html" class="nav-brand">Harrison<span>ABCA4</span></a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#writing">Writing</a>
+            <a href="holdings.html" class="active">Holdings</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="page-header">
+        <h1>Holdings &amp; Disclosures</h1>
+        <div class="last-updated">Last updated: March 2026</div>
+        <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.75; max-width: 700px; margin-top: 1.25rem;">I write about energy, technology, and markets. I hold concentrated positions in the energy sector (ET, private O&amp;G NOWIs) and positions in tobacco (PM), semiconductors (SMH), and broad equities (VOO). When I write about these sectors, I have economic exposure. Factor that into your reading. That's the whole point of this page.</p>
+    </div>
+
+    <section class="allocation-section">
+        <div class="section-label">Portfolio Overview</div>
+        <div class="summary-grid">
+            <div class="summary-card">
+                <div class="card-label">Positions</div>
+                <div class="card-value">6</div>
+                <div class="card-detail">Across equities, ETFs, private energy</div>
+            </div>
+            <div class="summary-card">
+                <div class="card-label">Concentration</div>
+                <div class="card-value">~74%</div>
+                <div class="card-detail">Energy sector exposure</div>
+            </div>
+            <div class="summary-card">
+                <div class="card-label">Updated</div>
+                <div class="card-value">Q1 '26</div>
+                <div class="card-detail">Quarterly refresh</div>
+            </div>
+        </div>
+
+        <div class="section-label">Allocation by Holding</div>
+        <div class="allocation-chart">
+            <div class="alloc-row">
+                <div class="alloc-name">Private O&amp;G NOWIs</div>
+                <div class="alloc-bar-wrapper"><div class="alloc-bar bar-energy" style="width: 39.5%"></div></div>
+                <div class="alloc-pct">~39.5%</div>
+            </div>
+            <div class="alloc-row">
+                <div class="alloc-name">Energy Transfer <span class="ticker">ET</span></div>
+                <div class="alloc-bar-wrapper"><div class="alloc-bar bar-equity" style="width: 34.4%"></div></div>
+                <div class="alloc-pct">~34.4%</div>
+            </div>
+            <div class="alloc-row">
+                <div class="alloc-name">Philip Morris <span class="ticker">PM</span></div>
+                <div class="alloc-bar-wrapper"><div class="alloc-bar bar-equity" style="width: 13.6%"></div></div>
+                <div class="alloc-pct">~13.6%</div>
+            </div>
+            <div class="alloc-row">
+                <div class="alloc-name">SMH <span class="ticker">ETF</span></div>
+                <div class="alloc-bar-wrapper"><div class="alloc-bar bar-etf" style="width: 5.4%"></div></div>
+                <div class="alloc-pct">~5.4%</div>
+            </div>
+            <div class="alloc-row">
+                <div class="alloc-name">Vanguard S&amp;P 500 <span class="ticker">VOO</span></div>
+                <div class="alloc-bar-wrapper"><div class="alloc-bar bar-index" style="width: 3.5%"></div></div>
+                <div class="alloc-pct">~3.5%</div>
+            </div>
+            <div class="alloc-row">
+                <div class="alloc-name">Cash / Other</div>
+                <div class="alloc-bar-wrapper"><div class="alloc-bar bar-cash" style="width: 3.5%"></div></div>
+                <div class="alloc-pct">~3.5%</div>
+            </div>
+        </div>
+
+        <div class="section-label">Holdings Detail</div>
+        <table class="holdings-table">
+            <thead>
+                <tr>
+                    <th>Holding</th>
+                    <th>Type</th>
+                    <th>Notes</th>
+                    <th>Allocation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="holding-name">Private Oil &amp; Gas NOWIs</div>
+                        <div class="holding-ticker">Private</div>
+                    </td>
+                    <td><span class="holding-type type-energy">Private Energy</span></td>
+                    <td style="color: var(--text-secondary); font-size: 0.85rem;">NOWIs (non-operating working interests) in producing wells; IDCs as part of W-2 tax strategy. Valued at cost basis</td>
+                    <td>~39.5%</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="holding-name">Energy Transfer LP</div>
+                        <div class="holding-ticker">ET</div>
+                    </td>
+                    <td><span class="holding-type type-equity">Equity</span></td>
+                    <td style="color: var(--text-secondary); font-size: 0.85rem;">Midstream energy infrastructure</td>
+                    <td>~34.4%</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="holding-name">Philip Morris International</div>
+                        <div class="holding-ticker">PM</div>
+                    </td>
+                    <td><span class="holding-type type-equity">Equity</span></td>
+                    <td style="color: var(--text-secondary); font-size: 0.85rem;">Next-gen nicotine &amp; smoke-free products (IQOS, ZYN)</td>
+                    <td>~13.6%</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="holding-name">VanEck Semiconductor ETF</div>
+                        <div class="holding-ticker">SMH</div>
+                    </td>
+                    <td><span class="holding-type type-etf">ETF</span></td>
+                    <td style="color: var(--text-secondary); font-size: 0.85rem;">Semiconductor sector exposure</td>
+                    <td>~5.4%</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="holding-name">Vanguard S&amp;P 500 ETF</div>
+                        <div class="holding-ticker">VOO</div>
+                    </td>
+                    <td><span class="holding-type type-index">Index ETF</span></td>
+                    <td style="color: var(--text-secondary); font-size: 0.85rem;">Broad US equity market</td>
+                    <td>~3.5%</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="holding-name">Cash &amp; Equivalents</div>
+                        <div class="holding-ticker">&mdash;</div>
+                    </td>
+                    <td><span class="holding-type type-cash">Cash</span></td>
+                    <td style="color: var(--text-secondary); font-size: 0.85rem;">Liquid reserves</td>
+                    <td>~3.5%</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <hr style="border: none; border-top: 1px solid var(--border);">
+
+    <section class="methodology">
+        <h2>Methodology &amp; Disclosures</h2>
+        <p>Allocations are approximate percentages of investable portfolio value, excluding primary residence. Private energy interests (NOWIs) are valued at cost basis since no public market price exists. I do my best to keep this page current, but I make no promise to update on any particular schedule. Positions and allocations may be outdated at any given time.</p>
+        <p>I am not a registered investment advisor. I am not a broker-dealer. I do not manage money for others. I'm a guy who solves problems with tech, writes about markets, and believes that disclosing what I own is the minimum bar for intellectual honesty when opining on sectors where I have skin in the game.</p>
+        <div class="disclaimer" style="margin-top: 2rem;">
+            <strong>This is not investment advice.</strong> I write about energy, technology, and macro themes &mdash; and I buy what I believe in. I disclose my holdings so you can factor my exposure into your reading. Allocations shown as approximate percentages of investable portfolio value, excluding primary residence. Private holdings are valued at cost basis. I do not disclose dollar amounts, account types, or custodians. I may buy or sell any position at any time without notice. Nothing on this page or site constitutes a recommendation to buy, sell, or hold any security.
+        </div>
+    </section>
+
+</div>
+
+<footer>
+    <p><a href="index.html">Harrison<span style="color: var(--accent)">ABCA4</span>.com</a> &middot; <a href="https://harrisonabca4.substack.com" target="_blank">Substack</a> &middot; <a href="https://x.com/HarrisonABCA4" target="_blank">X</a></p>
+    <p style="margin-top: 0.5rem;">Nothing on this site is investment advice. Opinions are my own.</p>
+</footer>
+
+</body>
+</html>
