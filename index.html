@@ -14,6 +14,7 @@
     <meta name="twitter:title" content="TechBlindspot | Harrison Greanias">
     <meta name="twitter:description" content="Practical, skeptical analysis of AI, cybersecurity, telecom, identity, enterprise technology, and markets.">
     <link rel="canonical" href="https://techblindspot.com">
+    <link rel="icon" href="data:,">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
@@ -27,7 +28,7 @@
             --border-hover: #3a3a40;
             --text-primary: #e8e8ec;
             --text-secondary: #9a9aa0;
-            --text-muted: #6a6a72;
+            --text-muted: #85858e;
             --accent: #c8965a;
             --accent-dim: rgba(200, 150, 90, 0.12);
             --accent-hover: #d4a76b;
@@ -102,6 +103,38 @@
         .topic-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.75rem; letter-spacing: -0.01em; }
         .topic-card p { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.65; }
 
+        .research-feature { padding-top: 72px; padding-bottom: 72px; }
+        .research-feature .section-label { margin-bottom: 1rem; color: var(--link); }
+        .research-row {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 2rem;
+            align-items: end;
+        }
+        .research-feature h2 {
+            margin: 0;
+            font-size: 1.35rem;
+            line-height: 1.35;
+            letter-spacing: 0;
+        }
+        .research-feature h2 a { color: var(--text-primary); text-decoration: none; }
+        .research-feature h2 a:hover { color: var(--link-hover); }
+        .research-feature p {
+            max-width: 680px;
+            margin-top: 0.75rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        .research-link {
+            color: var(--link);
+            font-size: 0.88rem;
+            font-weight: 600;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .research-link:hover { color: var(--link-hover); text-decoration: underline; }
+
         .writing { padding-top: 80px; padding-bottom: 80px; }
         .article-list { display: flex; flex-direction: column; gap: 0; }
         .article-item {
@@ -146,6 +179,7 @@
             .connect-grid { grid-template-columns: repeat(2, 1fr); }
             .nav-links { gap: 1rem; }
             .about p { font-size: 0.95rem; }
+            .research-row { grid-template-columns: 1fr; gap: 1.25rem; align-items: start; }
             a.article-item:hover { margin: 0; padding: 1.5rem 0; }
         }
         @media (max-width: 480px) {
@@ -156,11 +190,12 @@
             .nav-inner { padding: 0 1rem; height: 50px; }
             .nav-links { gap: 0.75rem; }
             .nav-links a { font-size: 0.8rem; }
+            .nav-links .nav-writing { display: none; }
             .nav-links a.nav-disclosure { padding: 0.3rem 0.65rem; font-size: 0.75rem; }
             .divider { padding: 0 1.25rem; }
             .hero-links { flex-direction: column; }
             .hero-links a { justify-content: center; }
-            .about, .topics, .writing, .connect { padding-top: 50px; padding-bottom: 50px; }
+            .about, .topics, .research-feature, .writing, .connect { padding-top: 50px; padding-bottom: 50px; }
             .topic-card { padding: 1.25rem; }
             .topic-card h3 { font-size: 0.95rem; }
             .topic-card p { font-size: 0.84rem; }
@@ -182,7 +217,8 @@
     <div class="nav-inner">
         <a href="/" class="nav-brand">Tech<span>Blindspot</span></a>
         <div class="nav-links">
-            <a href="#writing">Writing</a>
+            <a href="#writing" class="nav-writing">Writing</a>
+            <a href="breach-blindspots.html">Breach Blindspots</a>
             <a href="#connect">Connect</a>
         </div>
     </div>
@@ -190,7 +226,7 @@
 
 <section class="hero">
     <h1>TechBlindspot<span class="accent">.</span></h1>
-    <p class="subtitle">A field notebook from Harrison Greanias on AI, cybersecurity, telecom, identity, enterprise technology, and markets &mdash; focused on the gap between the demo and production.</p>
+    <p class="subtitle">A field notebook from Harrison Greanias on AI, cybersecurity, telecom, identity, enterprise technology, and markets. I focus on the gap between the demo and production.</p>
     <p class="subtitle" style="margin-top: -0.75rem;">I went legally blind at 10 from Stargardt's disease, tied to the <span style="color: var(--accent)">ABCA4</span> gene. I grew up navigating a world that wasn't built for me, which gave me dark humor, radical candor, and a habit of seeing what other people miss. That lens is the point of TechBlindspot: the overlooked parts of systems that explain how they really work.</p>
     <div class="hero-links">
         <a href="https://techblindspot.substack.com" class="primary-link" target="_blank" rel="noopener">
@@ -214,17 +250,30 @@
     <div class="section-label">What I Write About</div>
     <div class="topics-grid">
         <div class="topic-card">
-            <h3>Security</h3>
-            <p>Authentication infrastructure &mdash; SMS OTP, SIM Swap detection, Silent Auth, passkeys, FIDO2. The network intelligence layer underneath identity. Who's getting hacked, why it keeps happening, and what the fix actually looks like.</p>
+            <h3>AI in practice</h3>
+            <p>AI demos are easy. Dependable systems are not. I look at permissions, evidence, failure handling, governance, and the work between a clever model and a production system.</p>
         </div>
         <div class="topic-card">
-            <h3>Marketing</h3>
-            <p>Enterprise messaging &mdash; RCS, A2P SMS, branded calling, STIR/SHAKEN, WebRTC. The channels that reach customers and the infrastructure that makes them trustworthy. Where the adoption gaps are and who's closing them.</p>
+            <h3>Identity, communications, and trust</h3>
+            <p>Phone numbers, devices, networks, authentication, and messaging. What those systems can prove, what they cannot, and where the architecture gets messy.</p>
         </div>
         <div class="topic-card">
-            <h3>Investing</h3>
-            <p>Energy, commodities, geopolitics, and macro forces. Midstream infrastructure, trade policy, currency dynamics, and tax strategies for W-2 earners &mdash; including oil &amp; gas IDCs via NOWIs. Structural analysis, not hot takes.</p>
+            <h3>Enterprise technology economics</h3>
+            <p>How technology gets bought, deployed, governed, and paid for. Vendor claims, adoption friction, operating incentives, budgets, and occasional market research.</p>
         </div>
+    </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<section class="research-feature" aria-labelledby="breach-research-heading">
+    <div class="section-label">Research</div>
+    <div class="research-row">
+        <div>
+            <h2 id="breach-research-heading"><a href="breach-blindspots.html">Breach Blindspots</a></h2>
+            <p>The breach itself is rarely the useful lesson. The entry path is. This directory tracks incidents and campaigns, then maps where network signals might have changed a decision, and where they would not.</p>
+        </div>
+        <a class="research-link" href="breach-blindspots.html">Explore the directory</a>
     </div>
 </section>
 
@@ -235,17 +284,17 @@
     <div class="article-list">
         <a class="article-item" href="https://techblindspot.substack.com/p/authenticator-apps-arent-passwordless" target="_blank" rel="noopener">
             <h3>Authenticator Apps Aren't Passwordless. It's SMS with Extra Steps.</h3>
-            <p class="article-desc">You break your phone, download Microsoft Authenticator on the new one, and it asks you to verify your identity. How? SMS. The thing that was supposed to replace SMS-based authentication can't bootstrap itself without it. That's not a bug &mdash; that's the architecture telling you something.</p>
+            <p class="article-desc">You break your phone, download Microsoft Authenticator on the new one, and it asks you to verify your identity. How? SMS. The thing that was supposed to replace SMS-based authentication can't bootstrap itself without it. That's not a bug. That's the architecture telling you something.</p>
             <div class="article-meta"><span class="article-tag">Security</span> March 2026 &middot; <span style="color: var(--text-muted);">Substack</span> &middot; <a href="https://www.linkedin.com/pulse/authenticator-apps-arent-passwordless-its-sms-extra-steps-greanias-yshcc/" target="_blank" rel="noopener" style="color: var(--text-muted); text-decoration: underline;" onclick="event.stopPropagation();">LinkedIn</a></div>
         </a>
         <a class="article-item" href="https://techblindspot.substack.com/p/59-of-your-competitors-havent-launched" target="_blank" rel="noopener">
             <h3>59% of Your Competitors Haven't Launched RCS. That's Your Promotion.</h3>
-            <p class="article-desc">96% of smartphones support RCS. 59% of enterprises haven't shipped a single message. That's not slow adoption &mdash; that's an information arbitrage, and it's closing.</p>
+            <p class="article-desc">96% of smartphones support RCS. 59% of enterprises haven't shipped a single message. That's not slow adoption. It's an information arbitrage, and it's closing.</p>
             <div class="article-meta"><span class="article-tag">Marketing</span> April 2026 &middot; <span style="color: var(--text-muted);">Substack</span> &middot; <a href="https://www.linkedin.com/pulse/59-your-competitors-havent-launched-rcs-thats-harrison-greanias-qraac/" target="_blank" rel="noopener" style="color: var(--text-muted); text-decoration: underline;" onclick="event.stopPropagation();">LinkedIn</a></div>
         </a>
         <div class="article-item">
             <h3 style="color: var(--text-muted);">The Phone Call Nobody Answers (And Why That's About to Change)</h3>
-            <p class="article-desc" style="color: var(--text-muted);">Voice isn't dying. It's being re-platformed. Branded calling, STIR/SHAKEN, and WebRTC are rebuilding the highest-fidelity customer touchpoint that exists &mdash; and the market hasn't noticed.</p>
+            <p class="article-desc" style="color: var(--text-muted);">Voice isn't dying. It's being re-platformed. Branded calling, STIR/SHAKEN, and WebRTC are rebuilding the highest-fidelity customer touchpoint that exists, and the market hasn't noticed.</p>
             <div class="article-meta"><span class="article-tag">Marketing</span> Coming soon</div>
         </div>
     </div>

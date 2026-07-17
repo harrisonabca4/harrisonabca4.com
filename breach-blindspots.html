@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breach Blindspots | TechBlindspot</title>
+    <meta name="description" content="A sourced directory of enterprise breaches and attack campaigns, showing how attacks got in and where Network Powered Solutions could or could not have changed the outcome.">
+    <meta property="og:title" content="Breach Blindspots | TechBlindspot">
+    <meta property="og:description" content="The overlooked attack paths, the controls that mattered, and whether network signals could have changed the outcome.">
+    <meta property="og:url" content="https://techblindspot.com/breach-blindspots.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@TechBlindspot">
+    <link rel="canonical" href="https://techblindspot.com/breach-blindspots.html">
+    <link rel="icon" href="data:,">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+        *, *::before, *::after { box-sizing: border-box; }
+        [hidden] { display: none !important; }
+
+        :root {
+            --bg: #0a0a0b;
+            --bg-elevated: #111113;
+            --bg-card: #18181b;
+            --border: #34343a;
+            --border-hover: #55555e;
+            --text-primary: #ececf0;
+            --text-secondary: #b7b7bf;
+            --text-muted: #96969f;
+            --accent: #c8965a;
+            --accent-hover: #d4a76b;
+            --analysis: #82b9e3;
+            --link: #8ab9e7;
+            --link-hover: #b2d1ef;
+            --direct: #7fc49a;
+            --direct-bg: rgba(70, 158, 104, 0.13);
+            --supporting: #80acd8;
+            --supporting-bg: rgba(76, 133, 190, 0.14);
+            --none: #b0b0b8;
+            --none-bg: rgba(150, 150, 158, 0.11);
+            --unknown: #d4aa68;
+            --unknown-bg: rgba(200, 150, 90, 0.13);
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: var(--link); }
+        a:hover { color: var(--link-hover); }
+
+        nav {
+            position: fixed;
+            inset: 0 0 auto;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+            background: rgba(10, 10, 11, 0.9);
+            backdrop-filter: blur(12px);
+        }
+
+        .nav-inner {
+            width: min(1160px, 100%);
+            height: 56px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0;
+            text-decoration: none;
+        }
+
+        .nav-brand span { color: var(--accent); }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            font-size: 0.84rem;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover,
+        .nav-links a[aria-current="page"] { color: var(--text-primary); }
+
+        main { min-height: 100vh; }
+
+        .page-intro,
+        .workspace,
+        .methodology {
+            width: min(1160px, 100%);
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .page-intro {
+            padding-top: 126px;
+            padding-bottom: 42px;
+        }
+
+        .kicker,
+        .section-label,
+        .field-label,
+        .record-date,
+        .confidence,
+        .status {
+            font-family: var(--font-mono);
+        }
+
+        .kicker,
+        .section-label {
+            color: var(--accent);
+            font-size: 0.73rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .page-intro h1 {
+            margin: 0.55rem 0 1rem;
+            font-size: 3rem;
+            line-height: 1.1;
+            letter-spacing: 0;
+        }
+
+        .page-intro h1 .brand-word { color: var(--accent); }
+
+        .lede {
+            max-width: 780px;
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 1.08rem;
+            line-height: 1.7;
+        }
+
+        .snapshot {
+            margin: 1.15rem 0 0;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.76rem;
+        }
+
+        .disclosure {
+            max-width: 900px;
+            margin: 0.8rem 0 0;
+            padding: 0.2rem 0 0.2rem 1rem;
+            border-left: 2px solid var(--accent);
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            line-height: 1.6;
+        }
+
+        .research-notes {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .disclosure-block { margin-top: 1.75rem; }
+
+        .scope-copy {
+            max-width: 900px;
+            margin: 0.8rem 0 0;
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            line-height: 1.65;
+        }
+
+        .workspace {
+            padding-bottom: 70px;
+        }
+
+        .control-bar {
+            display: grid;
+            grid-template-columns: auto minmax(240px, 1fr) 190px 190px;
+            gap: 0.85rem;
+            align-items: end;
+            padding: 1.2rem 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .control-group {
+            min-width: 0;
+        }
+
+        .control-group label {
+            display: block;
+            margin-bottom: 0.4rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .segmented {
+            display: inline-grid;
+            grid-template-columns: 1fr 1fr;
+            width: 220px;
+            min-height: 44px;
+            padding: 3px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: var(--bg-elevated);
+        }
+
+        .segmented button {
+            min-width: 0;
+            border: 0;
+            border-radius: 3px;
+            background: transparent;
+            color: var(--text-secondary);
+            font: 600 0.8rem var(--font-body);
+            cursor: pointer;
+        }
+
+        .segmented button[aria-pressed="true"] {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            box-shadow: inset 0 0 0 1px var(--analysis);
+        }
+
+        input,
+        select {
+            width: 100%;
+            min-height: 44px;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+            font: 0.86rem var(--font-body);
+        }
+
+        input { padding: 0 0.8rem; }
+        select { padding: 0 2rem 0 0.75rem; }
+
+        input:focus,
+        select:focus,
+        button:focus-visible,
+        summary:focus-visible,
+        a:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            min-height: 86px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .metric {
+            padding: 1.1rem 1rem;
+            border-right: 1px solid var(--border);
+        }
+
+        .metric:first-child { padding-left: 0; }
+        .metric:last-child { border-right: 0; }
+
+        .metric-value {
+            display: block;
+            font-size: 1.35rem;
+            font-weight: 650;
+            line-height: 1.2;
+        }
+
+        .metric:nth-child(2) .metric-value { color: var(--direct); }
+        .metric:nth-child(3) .metric-value { color: var(--supporting); }
+        .metric:nth-child(4) .metric-value { color: var(--text-secondary); }
+        .metric:nth-child(5) .metric-value { color: var(--unknown); }
+
+        .metric-label {
+            display: block;
+            margin-top: 0.32rem;
+            color: var(--text-muted);
+            font-size: 0.72rem;
+            line-height: 1.3;
+        }
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            align-items: center;
+            padding: 1.35rem 0 0.8rem;
+        }
+
+        .results-title {
+            margin: 0;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .result-count {
+            color: var(--analysis);
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+        }
+
+        .status-key {
+            margin: 0 0 0.85rem;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            line-height: 1.55;
+        }
+
+        .record-headings,
+        .record-grid {
+            display: grid;
+            grid-template-columns: 118px minmax(210px, 1.1fr) minmax(270px, 1.5fr) 160px;
+            gap: 1rem;
+        }
+
+        .record-headings {
+            padding: 0.7rem 1rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .record-list {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .record {
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-left-width: 3px;
+            border-radius: 6px;
+            background: var(--bg-card);
+        }
+
+        .record:hover { border-color: var(--border-hover); }
+
+        .record-fit-direct,
+        .record-fit-direct:hover { border-left-color: var(--direct); }
+
+        .record-fit-supporting,
+        .record-fit-supporting:hover { border-left-color: var(--supporting); }
+
+        .record-fit-no-material-impact,
+        .record-fit-no-material-impact:hover { border-left-color: var(--none); }
+
+        .record-fit-unknown,
+        .record-fit-unknown:hover { border-left-color: var(--unknown); }
+
+        .record-grid {
+            min-height: 132px;
+            padding: 1.1rem 1rem;
+            align-items: start;
+        }
+
+        .record-date {
+            color: var(--text-secondary);
+            font-size: 0.73rem;
+            line-height: 1.5;
+        }
+
+        .status {
+            display: block;
+            margin-top: 0.55rem;
+            color: var(--text-muted);
+            font-size: 0.72rem;
+            text-transform: uppercase;
+        }
+
+        .record h2 {
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.4;
+            letter-spacing: 0;
+        }
+
+        .record-subject,
+        .record-path {
+            margin: 0.42rem 0 0;
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+            line-height: 1.55;
+        }
+
+        .record-path { margin-top: 0; }
+        .record-path p { margin: 0; }
+
+        .cell-label {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            clip-path: inset(50%);
+            white-space: nowrap;
+            border: 0;
+            color: var(--analysis);
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .fit-badge {
+            display: inline-block;
+            max-width: 100%;
+            padding: 0.28rem 0.5rem;
+            border-radius: 3px;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 500;
+            line-height: 1.35;
+        }
+
+        .fit-direct { color: var(--direct); background: var(--direct-bg); }
+        .fit-supporting { color: var(--supporting); background: var(--supporting-bg); }
+        .fit-no-material-impact { color: var(--none); background: var(--none-bg); }
+        .fit-unknown { color: var(--unknown); background: var(--unknown-bg); }
+
+        .confidence {
+            display: block;
+            margin-top: 0.55rem;
+            color: var(--text-muted);
+            font-size: 0.72rem;
+        }
+
+        details {
+            border-top: 1px solid var(--border);
+        }
+
+        summary {
+            min-height: 44px;
+            padding: 0.75rem 1rem;
+            color: var(--text-secondary);
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        summary:hover { color: var(--text-primary); }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            padding: 0.25rem 1rem 1.3rem;
+        }
+
+        .detail-section + .detail-section { margin-top: 1.25rem; }
+
+        .detail-section h3 {
+            margin: 0 0 0.45rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.67rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .detail-section p {
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+            line-height: 1.65;
+        }
+
+        .stages,
+        .signals {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.38rem;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.18rem 0.42rem;
+            border: 1px solid var(--border);
+            border-radius: 3px;
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            line-height: 1.4;
+        }
+
+        .source-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .source-list li + li { margin-top: 0.65rem; }
+
+        .source-list a {
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 3px;
+        }
+
+        .source-title {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .source-meta {
+            display: block;
+            margin-top: 0.18rem;
+            color: var(--text-muted);
+            font-size: 0.72rem;
+        }
+
+        .empty-state {
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .methodology {
+            padding-top: 70px;
+            padding-bottom: 90px;
+            border-top: 1px solid var(--border);
+            scroll-margin-top: 56px;
+        }
+
+        .methodology h2 {
+            max-width: 680px;
+            margin: 0.6rem 0 0.9rem;
+            font-size: 1.7rem;
+            line-height: 1.3;
+            letter-spacing: 0;
+        }
+
+        .methodology > .section-label { color: var(--analysis); }
+        .scope-block .section-label { color: var(--analysis); }
+        .disclosure-block .section-label { color: var(--accent); }
+
+        .methodology > p {
+            max-width: 780px;
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 0.94rem;
+        }
+
+        .methodology > p + p { margin-top: 0.85rem; }
+
+        .fit-key {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 0;
+            margin-top: 2rem;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .fit-key-item {
+            min-height: 145px;
+            padding: 1.2rem;
+            border-right: 1px solid var(--border);
+        }
+
+        .fit-key-item:first-child { padding-left: 0; }
+        .fit-key-item:last-child { border-right: 0; }
+
+        .fit-key-item h3 {
+            margin: 0 0 0.55rem;
+            font-size: 0.86rem;
+            letter-spacing: 0;
+        }
+
+        .fit-key-item:nth-child(1) h3 { color: var(--direct); }
+        .fit-key-item:nth-child(2) h3 { color: var(--supporting); }
+        .fit-key-item:nth-child(3) h3 { color: var(--text-secondary); }
+        .fit-key-item:nth-child(4) h3 { color: var(--unknown); }
+
+        .fit-key-item p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 0.78rem;
+            line-height: 1.55;
+        }
+
+        footer {
+            padding: 2rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 0.78rem;
+        }
+
+        footer p + p { margin-top: 0.4rem; }
+
+        @media (max-width: 980px) {
+            .control-bar {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .segmented { width: 100%; }
+
+            .record-headings { display: none; }
+
+            .record-grid {
+                grid-template-columns: 105px minmax(210px, 1fr) minmax(260px, 1.3fr);
+            }
+
+            .record-assessment {
+                grid-column: 2 / -1;
+            }
+        }
+
+        @media (min-width: 761px) and (max-width: 980px) {
+            .cell-label {
+                position: static;
+                width: auto;
+                height: auto;
+                margin: 0 0 0.35rem;
+                overflow: visible;
+                clip: auto;
+                clip-path: none;
+                white-space: normal;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .page-intro,
+            .workspace,
+            .methodology {
+                padding-left: 1.25rem;
+                padding-right: 1.25rem;
+            }
+
+            .page-intro {
+                padding-top: 105px;
+                padding-bottom: 32px;
+            }
+
+            .page-intro h1 { font-size: 2.2rem; }
+            .lede { font-size: 0.98rem; }
+
+            .metrics {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .metric {
+                border-right: 1px solid var(--border);
+                border-bottom: 1px solid var(--border);
+            }
+
+            .metric:first-child { padding-left: 1rem; }
+            .metric:nth-child(2n) { border-right: 0; }
+            .metric:last-child { border-bottom: 0; }
+
+            .record-grid {
+                grid-template-columns: 1fr;
+                gap: 0.7rem;
+                min-height: 0;
+            }
+
+            .record-assessment { grid-column: auto; }
+
+            .record-path .cell-label,
+            .record-assessment .cell-label {
+                position: static;
+                width: auto;
+                height: auto;
+                margin: 0 0 0.35rem;
+                overflow: visible;
+                clip: auto;
+                clip-path: none;
+                white-space: normal;
+            }
+
+            .record-date {
+                display: flex;
+                justify-content: space-between;
+                gap: 1rem;
+            }
+
+            .status { margin-top: 0; }
+
+            .detail-grid {
+                grid-template-columns: 1fr;
+                gap: 1.4rem;
+            }
+
+            .fit-key {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .fit-key-item:nth-child(2) { border-right: 0; }
+            .fit-key-item:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
+            .fit-key-item:nth-child(3) { padding-left: 0; }
+        }
+
+        @media (max-width: 520px) {
+            .nav-inner {
+                height: 52px;
+                padding: 0 1rem;
+            }
+
+            .nav-links { gap: 0.8rem; }
+            .nav-links a { font-size: 0.75rem; }
+            .nav-links .nav-writing { display: none; }
+
+            .page-intro h1 { font-size: 1.9rem; }
+
+            .control-bar {
+                grid-template-columns: 1fr;
+            }
+
+            .results-header {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+
+            .fit-key { grid-template-columns: 1fr; }
+
+            .fit-key-item,
+            .fit-key-item:first-child,
+            .fit-key-item:nth-child(3) {
+                min-height: 0;
+                padding: 1rem 0;
+                border-right: 0;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .fit-key-item:last-child { border-bottom: 0; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="index.html" class="nav-brand">Tech<span>Blindspot</span></a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#writing" class="nav-writing">Writing</a>
+            <a href="breach-blindspots.html" aria-current="page">Breach Blindspots</a>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <header class="page-intro">
+        <div class="kicker">Enterprise Security Research</div>
+        <h1>Breach <span class="brand-word">Blindspots</span></h1>
+        <p class="lede">A sourced directory of the overlooked attack paths behind major enterprise incidents, where Network Powered Solutions might have changed a decision, and where they would not.</p>
+        <p class="snapshot" id="snapshot">Loading research snapshot...</p>
+    </header>
+
+    <section class="workspace" aria-labelledby="records-heading">
+        <div class="control-bar">
+            <div class="control-group">
+                <label id="view-label">View</label>
+                <div class="segmented" role="group" aria-labelledby="view-label">
+                    <button type="button" data-view="incident" aria-pressed="true">Incidents</button>
+                    <button type="button" data-view="campaign" aria-pressed="false">Campaigns</button>
+                </div>
+            </div>
+            <div class="control-group">
+                <label for="search">Search</label>
+                <input id="search" type="search" autocomplete="off" placeholder="Organization, actor, entry path">
+            </div>
+            <div class="control-group">
+                <label for="fit-filter">Network fit</label>
+                <select id="fit-filter">
+                    <option value="all">All assessments</option>
+                    <option value="direct">Direct intervention</option>
+                    <option value="supporting">Supporting signal</option>
+                    <option value="no-material-impact">No material impact</option>
+                    <option value="unknown">Unknown</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="sector-filter">Sector</label>
+                <select id="sector-filter">
+                    <option value="all">All sectors</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="metrics" id="metrics" aria-label="Visible record summary"></div>
+
+        <div class="results-header">
+            <h2 class="results-title" id="records-heading">Incident records</h2>
+            <span class="result-count" id="result-count" aria-live="polite"></span>
+        </div>
+
+        <p class="status-key"><strong>Record status:</strong> Active means a recurring campaign is still observed. Monitoring means the public record is still developing. Historical means a bounded past case.</p>
+
+        <div class="record-headings" aria-hidden="true">
+            <span>Date</span>
+            <span>Case</span>
+            <span>Documented entry path</span>
+            <span>Network fit</span>
+        </div>
+        <div class="record-list" id="record-list"></div>
+    </section>
+
+    <section class="methodology" id="methodology">
+        <div class="section-label">Assessment key</div>
+        <h2>What the Network fit labels mean.</h2>
+        <p>Each label answers one question: could a network signal have changed a documented decision before the attacker succeeded?</p>
+        <div class="fit-key">
+            <div class="fit-key-item">
+                <h3>Direct intervention</h3>
+                <p>A documented network event maps to the exact decision point before the attacker succeeds.</p>
+            </div>
+            <div class="fit-key-item">
+                <h3>Supporting signal</h3>
+                <p>Network context could improve risk scoring or step-up, but it would not stop the attack by itself.</p>
+            </div>
+            <div class="fit-key-item">
+                <h3>No material impact</h3>
+                <p>The path centers on vulnerabilities, service credentials, sessions, or infrastructure outside mobile identity.</p>
+            </div>
+            <div class="fit-key-item">
+                <h3>Unknown</h3>
+                <p>The public record does not support a responsible mapping. Repeated reporting is not a substitute for evidence.</p>
+            </div>
+        </div>
+        <div class="research-notes">
+            <div class="scope-block">
+                <div class="section-label">Scope</div>
+                <p class="scope-copy" id="coverage"></p>
+            </div>
+            <div class="disclosure-block">
+                <div class="section-label">Disclosure</div>
+                <p class="disclosure" id="disclosure"></p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>Tech<span style="color: var(--accent)">Blindspot</span> &middot; Harrison Greanias</p>
+    <p>This is a research ledger, not a breach notification service or product recommendation.</p>
+</footer>
+
+<script src="breach-data.js"></script>
+<script>
+    (() => {
+        'use strict';
+
+        const data = window.BREACH_BLINDSPOTS_DATA;
+        const fitLabels = {
+            'direct': 'Direct intervention',
+            'supporting': 'Supporting signal',
+            'no-material-impact': 'No material impact',
+            'unknown': 'Unknown'
+        };
+
+        const state = {
+            view: 'incident',
+            search: '',
+            fit: 'all',
+            sector: 'all'
+        };
+
+        const elements = {
+            coverage: document.getElementById('coverage'),
+            disclosure: document.getElementById('disclosure'),
+            snapshot: document.getElementById('snapshot'),
+            metrics: document.getElementById('metrics'),
+            recordList: document.getElementById('record-list'),
+            recordsHeading: document.getElementById('records-heading'),
+            resultCount: document.getElementById('result-count'),
+            search: document.getElementById('search'),
+            fitFilter: document.getElementById('fit-filter'),
+            sectorFilter: document.getElementById('sector-filter'),
+            viewButtons: Array.from(document.querySelectorAll('[data-view]'))
+        };
+
+        function createElement(tag, className, text) {
+            const element = document.createElement(tag);
+            if (className) element.className = className;
+            if (text !== undefined && text !== null) element.textContent = text;
+            return element;
+        }
+
+        if (!data || !Array.isArray(data.records)) {
+            elements.snapshot.textContent = 'Research data unavailable';
+            elements.metrics.replaceChildren();
+            elements.metrics.hidden = true;
+            elements.recordsHeading.textContent = 'Records unavailable';
+            elements.resultCount.textContent = 'Load failed';
+            document.querySelector('.status-key').hidden = true;
+            document.querySelector('.record-headings').hidden = true;
+            elements.recordList.replaceChildren(createElement(
+                'p',
+                'empty-state',
+                'The research data did not load. Refresh the page to try again.'
+            ));
+            [elements.search, elements.fitFilter, elements.sectorFilter]
+                .forEach(control => { control.disabled = true; });
+            elements.viewButtons.forEach(button => { button.disabled = true; });
+            return;
+        }
+
+        function formatSnapshot(date) {
+            const parsed = new Date(`${date}T12:00:00Z`);
+            return new Intl.DateTimeFormat('en-US', {
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric',
+                timeZone: 'UTC'
+            }).format(parsed);
+        }
+
+        function safeExternalLink(source) {
+            try {
+                const url = new URL(source.url);
+                if (url.protocol !== 'https:') return null;
+                const link = createElement('a', '', source.title);
+                link.href = url.href;
+                link.target = '_blank';
+                link.rel = 'noopener noreferrer';
+                const hostname = url.hostname.replace(/^www\./, '');
+                link.setAttribute(
+                    'aria-label',
+                    `${source.title} (${hostname}, opens in a new tab)`
+                );
+                return { link, hostname };
+            } catch (error) {
+                return null;
+            }
+        }
+
+        function addDetailSection(parent, title, content) {
+            const section = createElement('div', 'detail-section');
+            section.appendChild(createElement('h3', '', title));
+            if (content instanceof Node) {
+                section.appendChild(content);
+            } else {
+                section.appendChild(createElement('p', '', content));
+            }
+            parent.appendChild(section);
+        }
+
+        function addTags(values, className) {
+            const container = createElement('div', className);
+            values.forEach(value => container.appendChild(createElement('span', 'tag', value)));
+            return container;
+        }
+
+        function buildRecord(record) {
+            const article = createElement(
+                'article',
+                `record record-fit-${record.networkAssessment.fit}`
+            );
+            const grid = createElement('div', 'record-grid');
+
+            const date = createElement('div', 'record-date');
+            date.appendChild(createElement('span', 'cell-label', 'Date'));
+            date.appendChild(createElement('span', '', record.timeframe));
+            date.appendChild(createElement('span', 'status', record.status));
+            grid.appendChild(date);
+
+            const caseColumn = createElement('div', 'record-case');
+            caseColumn.appendChild(createElement('span', 'cell-label', 'Case'));
+            caseColumn.appendChild(createElement('h2', '', record.title));
+            const subject = record.actor ? `${record.subject} | ${record.actor}` : record.subject;
+            caseColumn.appendChild(createElement('p', 'record-subject', subject));
+            grid.appendChild(caseColumn);
+
+            const pathColumn = createElement('div', 'record-path');
+            pathColumn.appendChild(createElement('span', 'cell-label', 'Documented entry path'));
+            pathColumn.appendChild(createElement('p', '', record.entryPath));
+            grid.appendChild(pathColumn);
+
+            const assessment = createElement('div', 'record-assessment');
+            assessment.appendChild(createElement('span', 'cell-label', 'Network fit'));
+            assessment.appendChild(createElement(
+                'span',
+                `fit-badge fit-${record.networkAssessment.fit}`,
+                fitLabels[record.networkAssessment.fit]
+            ));
+            assessment.appendChild(createElement(
+                'span',
+                'confidence',
+                `${record.networkAssessment.confidence} analysis confidence`
+            ));
+            grid.appendChild(assessment);
+            article.appendChild(grid);
+
+            const details = document.createElement('details');
+            details.appendChild(createElement('summary', '', 'Evidence and control analysis'));
+            const detailGrid = createElement('div', 'detail-grid');
+            const left = createElement('div');
+            const right = createElement('div');
+
+            addDetailSection(left, 'Earliest confirmed failure', record.earliestControlFailure);
+            addDetailSection(left, 'Attack stages', addTags(record.stages, 'stages'));
+            addDetailSection(left, 'Documented impact', record.impact);
+
+            addDetailSection(right, 'Decision point', record.networkAssessment.decisionPoint);
+            if (record.networkAssessment.signals.length) {
+                addDetailSection(right, 'Relevant network signals', addTags(record.networkAssessment.signals, 'signals'));
+            }
+            addDetailSection(right, 'Assessment', record.networkAssessment.analysis);
+            addDetailSection(right, 'Limits and stronger controls', record.networkAssessment.caveat);
+
+            const sourceList = createElement('ul', 'source-list');
+            record.sources.forEach(source => {
+                const item = document.createElement('li');
+                const safeSource = safeExternalLink(source);
+                if (safeSource) {
+                    item.appendChild(safeSource.link);
+                } else {
+                    item.appendChild(createElement('span', 'source-title', source.title));
+                }
+                const sourceMeta = [source.publisher];
+                if (safeSource) sourceMeta.push(safeSource.hostname);
+                sourceMeta.push(source.published, source.role);
+                item.appendChild(createElement(
+                    'span',
+                    'source-meta',
+                    sourceMeta.join(' | ')
+                ));
+                sourceList.appendChild(item);
+            });
+            addDetailSection(left, 'Sources', sourceList);
+            addDetailSection(
+                right,
+                'Review status',
+                `Source confidence: ${record.sourceConfidence}. Last reviewed: ${record.lastReviewed}.`
+            );
+
+            detailGrid.appendChild(left);
+            detailGrid.appendChild(right);
+            details.appendChild(detailGrid);
+            article.appendChild(details);
+            return article;
+        }
+
+        function visibleRecords() {
+            const query = state.search.trim().toLowerCase();
+            return data.records
+                .filter(record => record.type === state.view)
+                .filter(record => state.fit === 'all' || record.networkAssessment.fit === state.fit)
+                .filter(record => state.sector === 'all' || record.sector === state.sector)
+                .filter(record => {
+                    if (!query) return true;
+                    const haystack = [
+                        record.title,
+                        record.subject,
+                        record.sector,
+                        record.actor || '',
+                        record.entryPath,
+                        record.earliestControlFailure,
+                        record.impact,
+                        record.networkAssessment.analysis,
+                        ...record.stages,
+                        ...record.networkAssessment.signals
+                    ].join(' ').toLowerCase();
+                    return haystack.includes(query);
+                })
+                .sort((first, second) => second.sortDate.localeCompare(first.sortDate));
+        }
+
+        function renderMetrics(records) {
+            const metrics = [
+                ['Records', records.length],
+                ['Direct', records.filter(record => record.networkAssessment.fit === 'direct').length],
+                ['Supporting', records.filter(record => record.networkAssessment.fit === 'supporting').length],
+                ['No material impact', records.filter(record => record.networkAssessment.fit === 'no-material-impact').length],
+                ['Unknown', records.filter(record => record.networkAssessment.fit === 'unknown').length]
+            ];
+            elements.metrics.replaceChildren();
+            metrics.forEach(([label, value]) => {
+                const metric = createElement('div', 'metric');
+                metric.appendChild(createElement('span', 'metric-value', String(value)));
+                metric.appendChild(createElement('span', 'metric-label', label));
+                elements.metrics.appendChild(metric);
+            });
+        }
+
+        function render() {
+            const records = visibleRecords();
+            const label = state.view === 'incident' ? 'Incident' : 'Campaign';
+            elements.recordsHeading.textContent = `${label} records`;
+            elements.resultCount.textContent = `${records.length} ${records.length === 1 ? 'record' : 'records'} shown`;
+            elements.viewButtons.forEach(button => {
+                button.setAttribute('aria-pressed', String(button.dataset.view === state.view));
+            });
+
+            renderMetrics(records);
+            elements.recordList.replaceChildren();
+            if (!records.length) {
+                elements.recordList.appendChild(createElement(
+                    'div',
+                    'empty-state',
+                    'No records match the current filters.'
+                ));
+                return;
+            }
+            records.forEach(record => elements.recordList.appendChild(buildRecord(record)));
+        }
+
+        function populateSectors() {
+            const sectors = Array.from(new Set(
+                data.records
+                    .filter(record => record.type === state.view)
+                    .map(record => record.sector)
+            )).sort();
+            elements.sectorFilter.replaceChildren();
+            const allSectors = document.createElement('option');
+            allSectors.value = 'all';
+            allSectors.textContent = 'All sectors';
+            elements.sectorFilter.appendChild(allSectors);
+            sectors.forEach(sector => {
+                const option = document.createElement('option');
+                option.value = sector;
+                option.textContent = sector;
+                elements.sectorFilter.appendChild(option);
+            });
+            elements.sectorFilter.value = state.sector;
+        }
+
+        if (!data || !Array.isArray(data.records)) {
+            elements.snapshot.textContent = 'Research data could not be loaded.';
+            return;
+        }
+
+        elements.snapshot.textContent = `${data.records.length} records | Independent research | U.S.-weighted, core coverage since 2020 | Source cutoff ${formatSnapshot(data.snapshotDate)} | Curated, not exhaustive`;
+        elements.coverage.textContent = data.coverage;
+        elements.disclosure.textContent = data.disclosure;
+        populateSectors();
+
+        elements.viewButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                state.view = button.dataset.view;
+                state.sector = 'all';
+                populateSectors();
+                render();
+            });
+        });
+        elements.search.addEventListener('input', event => {
+            state.search = event.target.value;
+            render();
+        });
+        elements.fitFilter.addEventListener('change', event => {
+            state.fit = event.target.value;
+            render();
+        });
+        elements.sectorFilter.addEventListener('change', event => {
+            state.sector = event.target.value;
+            render();
+        });
+
+        render();
+    })();
+</script>
+</body>
+</html>
