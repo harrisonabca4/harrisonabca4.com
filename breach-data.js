@@ -1,6 +1,6 @@
 window.BREACH_BLINDSPOTS_DATA = {
   "schemaVersion": 1,
-  "snapshotDate": "2026-07-16",
+  "snapshotDate": "2026-07-17",
   "coverage": "A curated, U.S.-weighted ledger built from English-language public sources. Core coverage begins in 2020, with selected landmark cases from 2015 through 2019 and rare earlier exceptions. Non-U.S. cases are included when they are globally significant or provide an unusually strong enterprise control lesson. It is not an exhaustive breach catalog, a breach notification service, or a claim of geographic completeness.",
   "disclosure": "I work at Vonage, where my role includes Network Powered Solutions. TechBlindspot is my independent personal project. This analysis uses public information and reflects my own views, not those of Vonage, Ericsson, or their affiliates.",
   "records": [
@@ -82,8 +82,15 @@ window.BREACH_BLINDSPOTS_DATA = {
         {
           "title": "What We Learned: Change Healthcare Cyber Attack",
           "publisher": "U.S. House Committee on Energy and Commerce",
-          "published": "2024-05-01",
+          "published": "2024-05-03",
           "url": "https://energycommerce.house.gov/posts/what-we-learned-change-healthcare-cyber-attack",
+          "role": "government-record"
+        },
+        {
+          "title": "Testimony of Andrew Witty: Examining the Change Healthcare Cyberattack",
+          "publisher": "U.S. House Committee on Energy and Commerce",
+          "published": "2024-05-01",
+          "url": "https://docs.house.gov/meetings/IF/IF02/20240501/117242/HHRG-118-IF02-Wstate-WittyS-20240501-U5.pdf",
           "role": "government-record"
         }
       ],
@@ -126,6 +133,13 @@ window.BREACH_BLINDSPOTS_DATA = {
           "published": "2024-01-19",
           "url": "https://www.microsoft.com/en-us/msrc/blog/2024/01/microsoft-actions-following-attack-by-nation-state-actor-midnight-blizzard/",
           "role": "primary"
+        },
+        {
+          "title": "Midnight Blizzard: Guidance for Responders on Nation-State Attack",
+          "publisher": "Microsoft Threat Intelligence",
+          "published": "2024-01-25",
+          "url": "https://www.microsoft.com/en-us/security/blog/2024/01/25/midnight-blizzard-guidance-for-responders-on-nation-state-attack/",
+          "role": "threat-research"
         }
       ],
       "sourceConfidence": "high",
@@ -332,6 +346,20 @@ window.BREACH_BLINDSPOTS_DATA = {
           "published": "2023-09-12",
           "url": "https://www.sec.gov/Archives/edgar/data/789570/000119312523233855/d502352dex991.htm",
           "role": "regulatory-filing"
+        },
+        {
+          "title": "MGM Resorts International Form 8-K",
+          "publisher": "U.S. Securities and Exchange Commission",
+          "published": "2023-10-05",
+          "url": "https://www.sec.gov/Archives/edgar/data/789570/000119312523251667/d461062d8k.htm",
+          "role": "regulatory-filing"
+        },
+        {
+          "title": "MGM Resorts International 2023 Form 10-K",
+          "publisher": "U.S. Securities and Exchange Commission",
+          "published": "2024-02-23",
+          "url": "https://www.sec.gov/Archives/edgar/data/789570/000078957024000005/mgm-20231231.htm",
+          "role": "regulatory-filing"
         }
       ],
       "sourceConfidence": "high",
@@ -374,10 +402,17 @@ window.BREACH_BLINDSPOTS_DATA = {
       },
       "sources": [
         {
-          "title": "Defending Against ShinyHunters-Branded Cybercrime Targeting SaaS Applications",
+          "title": "Guidance from the Frontlines: Proactive Defense Against ShinyHunters-Branded Data Theft Targeting SaaS",
           "publisher": "Google Cloud Mandiant",
           "published": "2026-01-30",
           "url": "https://cloud.google.com/blog/topics/threat-intelligence/defense-against-shinyhunters-cybercrime-saas/",
+          "role": "threat-research"
+        },
+        {
+          "title": "Vishing for Access: Tracking the Expansion of ShinyHunters-Branded SaaS Data Theft",
+          "publisher": "Google Threat Intelligence Group and Mandiant",
+          "published": "2026-01-30",
+          "url": "https://cloud.google.com/blog/topics/threat-intelligence/expansion-shinyhunters-saas-data-theft",
           "role": "threat-research"
         }
       ],
@@ -416,8 +451,8 @@ window.BREACH_BLINDSPOTS_DATA = {
           "Location Verification"
         ],
         "decisionPoint": "Remote hiring, onboarding, and periodic identity re-proofing",
-        "analysis": "Subscriber and number data could flag an identity mismatch, a reused number, an implausible tenure, or a location inconsistency when an eligible mobile number is part of the proofing flow. It is a supporting signal, not proof that the person behind a remote session is the claimed worker.",
-        "caveat": "Laptop farms are designed to make company-device and U.S. network-location signals look normal. Stronger controls include robust or in-person identity verification, staffing-vendor audits, device-shipment controls, KVM and remote-access detection, least privilege, repository and export monitoring, payment reconciliation, and recurring re-verification.",
+        "analysis": "Carrier-backed country, location, subscriber, and number signals could flag a foreign handset, an identity mismatch, a reused number, or implausible tenure when an eligible mobile number is part of hiring, MFA enrollment, re-proofing, or a sensitive account change. The signal can strengthen a decision, but it does not prove who is operating a remote session.",
+        "caveat": "Public cases establish U.S. laptop farms and overseas operators, not U.S. phone farms as a standard tactic. One related DOJ case says a facilitator advertised SIM-card rentals, but does not establish remotely controlled U.S. handsets as a routine method. A facilitator-held U.S. phone or SIM, a reused VoIP number, no mobile step, or a laptop farm can make location look normal. Stronger controls include robust or in-person identity verification, device-shipment controls, KVM and remote-access detection, least privilege, repository and export monitoring, payment reconciliation, and recurring re-verification.",
         "confidence": "medium"
       },
       "sources": [
@@ -441,6 +476,20 @@ window.BREACH_BLINDSPOTS_DATA = {
           "published": "2025-06-30",
           "url": "https://www.justice.gov/opa/pr/justice-department-announces-coordinated-nationwide-actions-combat-north-korean-remote",
           "role": "court-and-law-enforcement"
+        },
+        {
+          "title": "DPRK Leverages U.S.-Based Individuals to Defraud U.S. Businesses and Generate Revenue",
+          "publisher": "FBI Internet Crime Complaint Center",
+          "published": "2024-05-16",
+          "url": "https://www.ic3.gov/PSA/2024/PSA240516",
+          "role": "government-advisory"
+        },
+        {
+          "title": "Charges and Seizures Brought in Fraud Scheme Aimed at Denying Revenue for Workers Associated with North Korea",
+          "publisher": "U.S. Department of Justice",
+          "published": "2024-05-16",
+          "url": "https://www.justice.gov/archives/opa/pr/charges-and-seizures-brought-fraud-scheme-aimed-denying-revenue-workers-associated-north",
+          "role": "court-and-law-enforcement"
         }
       ],
       "sourceConfidence": "high",
@@ -455,7 +504,7 @@ window.BREACH_BLINDSPOTS_DATA = {
       "sector": "Cross-sector",
       "actor": "Scattered Spider",
       "timeframe": "Observed 2022-present",
-      "sortDate": "2025-08-01",
+      "sortDate": "2025-07-29",
       "disclosedDate": "2023-11-16",
       "status": "active",
       "entryPath": "The group has impersonated IT or help-desk staff through calls and messages, stolen one-time codes, used MFA fatigue, persuaded users to install remote-access tools, and carried out SIM swaps.",
@@ -484,9 +533,9 @@ window.BREACH_BLINDSPOTS_DATA = {
       },
       "sources": [
         {
-          "title": "Scattered Spider Joint Cybersecurity Advisory",
+          "title": "Scattered Spider",
           "publisher": "CISA, FBI, and international partners",
-          "published": "2025-08",
+          "published": "2025-07-29",
           "url": "https://www.cisa.gov/sites/default/files/2025-08/aa23-320a-scattered-spider-508c.pdf",
           "role": "government-advisory"
         }
@@ -526,7 +575,7 @@ window.BREACH_BLINDSPOTS_DATA = {
       },
       "sources": [
         {
-          "title": "Countering Chinese State-Sponsored Actors' Compromise of Networks Worldwide",
+          "title": "Countering Chinese State-Sponsored Actors Compromise of Networks Worldwide to Feed Global Espionage System",
           "publisher": "CISA and international partners",
           "published": "2025-09-03",
           "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa25-239a",
@@ -548,7 +597,7 @@ window.BREACH_BLINDSPOTS_DATA = {
       "sortDate": "2024-02-07",
       "disclosedDate": "2023-05-24",
       "status": "monitoring",
-      "entryPath": "The actor has used known vulnerabilities, valid accounts, and compromised small-office or edge devices, then relied on built-in administration tools to blend into normal network activity.",
+      "entryPath": "The actor has exploited vulnerabilities in public-facing network appliances, used valid accounts, and relied on built-in administration tools to blend into normal network activity. Compromised small-office routers have also helped conceal source activity.",
       "earliestControlFailure": "Exposed devices, weak credential control, and limited telemetry allowed quiet access and long-term persistence.",
       "stages": [
         "edge-device access",
@@ -610,7 +659,7 @@ window.BREACH_BLINDSPOTS_DATA = {
       },
       "sources": [
         {
-          "title": "CL0P Ransomware Gang Exploits MOVEit Vulnerability",
+          "title": "#StopRansomware: CL0P Ransomware Gang Exploits CVE-2023-34362 MOVEit Vulnerability",
           "publisher": "CISA and FBI",
           "published": "2023-06-07",
           "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-158a",
