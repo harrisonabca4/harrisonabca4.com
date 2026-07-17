@@ -1156,6 +1156,32 @@
             elements.sectorFilter.value = state.sector;
         }
 
+        function populateFitOptions() {
+            const availableFits = new Set(
+                data.records
+                    .filter(record => record.type === state.view)
+                    .map(record => record.networkAssessment.fit)
+            );
+            if (state.fit !== 'all' && !availableFits.has(state.fit)) {
+                state.fit = 'all';
+            }
+
+            elements.fitFilter.replaceChildren();
+            const allFits = document.createElement('option');
+            allFits.value = 'all';
+            allFits.textContent = 'All assessments';
+            elements.fitFilter.appendChild(allFits);
+
+            Object.entries(fitLabels).forEach(([value, label]) => {
+                if (!availableFits.has(value)) return;
+                const option = document.createElement('option');
+                option.value = value;
+                option.textContent = label;
+                elements.fitFilter.appendChild(option);
+            });
+            elements.fitFilter.value = state.fit;
+        }
+
         if (!data || !Array.isArray(data.records)) {
             elements.snapshot.textContent = 'Research data could not be loaded.';
             return;
@@ -1164,12 +1190,14 @@
         elements.snapshot.textContent = `${data.records.length} records | Independent research | U.S.-weighted, core coverage since 2020 | Source cutoff ${formatSnapshot(data.snapshotDate)} | Curated, not exhaustive`;
         elements.coverage.textContent = data.coverage;
         elements.disclosure.textContent = data.disclosure;
+        populateFitOptions();
         populateSectors();
 
         elements.viewButtons.forEach(button => {
             button.addEventListener('click', () => {
                 state.view = button.dataset.view;
                 state.sector = 'all';
+                populateFitOptions();
                 populateSectors();
                 render();
             });
